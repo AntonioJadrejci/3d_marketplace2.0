@@ -16,17 +16,19 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #031413;
 }
 
 nav {
-  padding: 30px;
+  padding: 40px;
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #34f1f3;
+    font-size: 20px;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #34f1f3;
     }
   }
 }
