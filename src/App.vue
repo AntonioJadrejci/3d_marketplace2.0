@@ -9,13 +9,11 @@
           width="200px"
         />
       </div>
-
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Pretraživanje" />
         </div>
       </form>
-
       <router-link style="text decoration: none" to="/"
         >3D MARKETPLACE</router-link
       >
