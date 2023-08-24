@@ -1,28 +1,21 @@
 <template>
-  <div class="home">
-    <img
-      alt="Pozadinska slika"
-      class="Background"
-      src="../assets/Background.png"
-    />
-  </div>
+  <div class="home-background"></div>
 </template>
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
   name: "HomeView",
-  components: {
-    HelloWorld,
-  },
+  components: {},
 };
 </script>
+
 <style scoped>
-.Background {
-  position: relative;
+.home-background {
+  background-image: url("../assets/Background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
   width: 100%;
-  top: 0;
-  left: 0;
+  border-radius: 0 !important;
 }
 </style>
