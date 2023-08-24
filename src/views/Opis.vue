@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-background">
     <div class="descr">
       <p2>
         Ovo je 3D marketplace, mjesto na kojemu možete pronaći veliki broj 3d
@@ -19,22 +19,20 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
   name: "HomeView",
-  components: {
-    HelloWorld,
-  },
+  components: {},
 };
 </script>
 <style scoped>
-.Background {
-  position: relative;
+.home-Background {
+  background-image: url("../assets/onama.jpeg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
-  top: 0;
-  left: 0;
+  height: 100vh;
+  position: relative;
 }
 .descr {
   font-size: 40px;
