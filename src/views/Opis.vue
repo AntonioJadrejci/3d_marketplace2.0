@@ -1,19 +1,14 @@
 <template>
   <div class="home-background">
-    <div class="descr">
-      <p2>
-        Ovo je 3D marketplace, mjesto na kojemu možete pronaći veliki broj 3d
-        modela koji su kompatibilni u programu blender. Isto tako možete i vi
-        sami učiniti 3d marketplace boljim za upotrebu tako da objavite vaše
-        vlastite 3d modele koji će pomoći drugim korisnicima.
-      </p2>
-    </div>
-    <div class="home">
-      <img
-        alt="Pozadinska slika"
-        class="Background"
-        src="../assets/Background.png"
-      />
+    <div class="panel">
+      <div class="descr">
+        <p2>
+          Ovo je 3D marketplace, mjesto na kojemu možete pronaći veliki broj 3d
+          modela koji su kompatibilni u programu blender. Isto tako možete i vi
+          sami učiniti 3d marketplace boljim za upotrebu tako da objavite vaše
+          vlastite 3d modele koji će pomoći drugim korisnicima.
+        </p2>
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +29,15 @@ export default {
   height: 100vh;
   position: relative;
 }
+
+.panel {
+  position: absolute;
+  top: 20;
+  left: 0;
+  width: 50%;
+  height: 300vh;
+}
+
 .descr {
   font-size: 40px;
   text-align: center;
