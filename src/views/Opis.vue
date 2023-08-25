@@ -1,7 +1,7 @@
 <template>
   <div class="home-background">
     <div class="panel">
-      <div class="descr">
+      <div class="description">
         <p2>
           Ovo je 3D marketplace, mjesto na kojemu možete pronaći veliki broj 3d
           modela koji su kompatibilni u programu blender. Isto tako možete i vi
@@ -38,7 +38,7 @@ export default {
   height: 300vh;
 }
 
-.descr {
+.description {
   font-size: 40px;
   text-align: center;
   padding: 25px 0;
