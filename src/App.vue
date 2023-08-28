@@ -1,19 +1,15 @@
 <template>
-  <div id="app">
-    <nav>
-      <div class="home">
-        <img
-          alt="Pozadinska slika"
-          class="Background"
-          src="./assets/Naslov.png"
-          width="200px"
-        />
-      </div>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Pretraživanje" />
-        </div>
-      </form>
+  <div class="app-container">
+    <nav :color="'#01090a'" dark>
+      <v-text-field
+        class="white-background search-field"
+        hide-details
+        prepend-icon="mdi-magnify"
+        single-line
+        placeholder="Pretraživanje"
+        ref="searchField"
+      >
+      </v-text-field>
       <router-link style="text decoration: none" to="/"
         >3D MARKETPLACE</router-link
       >
@@ -41,7 +37,7 @@
 </template>
 
 <style lang="scss">
-#app {
+.app-container {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -63,5 +59,16 @@ nav {
       color: #34f1f3;
     }
   }
+}
+.app-footer {
+  flex-shrink: 0;
+}
+
+.search-field {
+  max-width: 250px;
+}
+.search-field ::placeholder {
+  color: #3bd5ea !important;
+  font-size: large !important;
 }
 </style>
