@@ -18,6 +18,13 @@
         >3D MARKETPLACE</router-link
       >
       |
+      <router-link style="text decoration: none" to="/Login"
+        >Prijava</router-link
+      >
+      <router-link style="text decoration: none" to="/Signup"
+        >Registracija</router-link
+      >
+      <router-link style="text decoration: none" to="/Opis">Opis</router-link>
     </nav>
     <router-view />
   </div>
