@@ -27,6 +27,16 @@
       <router-link style="text decoration: none" to="/Opis">Opis</router-link>
     </nav>
     <router-view />
+    <!-- Footer -->
+    <v-footer padless class="app-footer p-4" style="background-color: #01090a">
+      <v-container>
+        <v-row>
+          <v-col class="text-center blue-font" cols="12">
+            Mnoštvo besplatnih 3D modela na jednom mjestu!
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-footer>
   </div>
 </template>
 
