@@ -1,6 +1,21 @@
 <template>
   <div class="app-container">
     <nav :color="'#01090a'" dark>
+      <v-spacer></v-spacer>
+      <div class="flex-center-image">
+        <a href="/">
+          <v-img
+            alt="3D MARKETPLACE"
+            contain
+            :src="require('./assets/Naslov.png')"
+            transition="scale-transition"
+            max-height="100"
+            max-width="600"
+          />
+        </a>
+      </div>
+      <v-spacer></v-spacer>
+
       <v-text-field
         class="white-background search-field"
         hide-details
@@ -10,6 +25,7 @@
         ref="searchField"
       >
       </v-text-field>
+
       <router-link style="text decoration: none" to="/"
         >3D MARKETPLACE</router-link
       >
@@ -62,6 +78,12 @@ nav {
 }
 .app-footer {
   flex-shrink: 0;
+}
+.flex-center-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-field {
