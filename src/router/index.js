@@ -1,7 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import GalerijaView from "@/views/GalerijaView.vue";
+import GalerijaView from "@/views/GalerijaView.vue"
+import FavoritiView from "../views/FavoritiView.vue";
+import ProfilView from "../views/ProfilView.vue";
+import ModelPageVue from "@/views/ModelPage.vue";
+
 
 
 Vue.use(VueRouter)
@@ -32,6 +36,24 @@ const routes = [
     name: "galerija",
     component: GalerijaView,
   },
+  {
+    path: "/profil",
+    name: "profil",
+    component: ProfilView,
+  },
+  {
+    path: "/favoriti",
+    name: "favoriti",
+    component: FavoritiView,
+  },
+  {
+    path: "/galerija/:model",
+    name: "model-page",
+    props: true,
+    component: ModelPageVue,
+  },
+
+
 ]
 
 

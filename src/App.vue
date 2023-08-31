@@ -44,8 +44,18 @@
         >Registracija</router-link
       >
       <router-link style="text decoration: none" to="/Opis">Opis</router-link>
+
       <router-link style="text decoration: none" to="/GalerijaView"
         >Galerija</router-link
+      >
+      <router-link style="text decoration: none" to="/ProfilView"
+        >Profil</router-link
+      >
+      <router-link style="text decoration: none" to="/FavoritiView"
+        >Favoriti</router-link
+      >
+      <router-link style="text decoration: none" to="/ModelPage"
+        >Model Page</router-link
       >
     </nav>
     <router-view />
