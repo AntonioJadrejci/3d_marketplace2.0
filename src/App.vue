@@ -1,6 +1,15 @@
 <template>
   <div class="app-container">
     <nav :color="'#01090a'" dark>
+      <v-btn
+        class="mx-2 ml-12 square-btn"
+        @click="toggleUploadWindow()"
+        dark
+        :color="'#3bd5ea'"
+      >
+        <v-icon dark> mdi-plus </v-icon>
+      </v-btn>
+
       <v-spacer></v-spacer>
       <div class="flex-center-image">
         <a href="/">
@@ -15,7 +24,6 @@
         </a>
       </div>
       <v-spacer></v-spacer>
-
       <v-text-field
         class="white-background search-field"
         hide-details
@@ -25,7 +33,6 @@
         ref="searchField"
       >
       </v-text-field>
-
       <router-link style="text decoration: none" to="/"
         >3D MARKETPLACE</router-link
       >
@@ -51,6 +58,7 @@
     </v-footer>
   </div>
 </template>
+
 
 <style lang="scss">
 .app-container {
@@ -78,6 +86,11 @@ nav {
 }
 .app-footer {
   flex-shrink: 0;
+}
+.custom-icon-size .v-icon {
+  font-size: 2rem; /* Adjust the size as needed */
+  height: 2rem;
+  width: 2rem;
 }
 .flex-center-image {
   flex: 1;
