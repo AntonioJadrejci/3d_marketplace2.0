@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import GalerijaView from "@/views/GalerijaView.vue";
 
 
 Vue.use(VueRouter)
@@ -25,7 +26,12 @@ const routes = [
     path: '/opis',
     name: 'Opis',
     component: () => import('../views/Opis.vue')
-  }
+  },
+  {
+    path: "/galerija/",
+    name: "galerija",
+    component: GalerijaView,
+  },
 ]
 
 

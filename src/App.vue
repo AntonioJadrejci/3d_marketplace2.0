@@ -44,8 +44,12 @@
         >Registracija</router-link
       >
       <router-link style="text decoration: none" to="/Opis">Opis</router-link>
+      <router-link style="text decoration: none" to="/GalerijaView"
+        >Galerija</router-link
+      >
     </nav>
     <router-view />
+
     <!-- Footer -->
     <v-footer padless class="app-footer p-4" style="background-color: #01090a">
       <v-container>
