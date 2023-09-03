@@ -5,6 +5,7 @@ import GalerijaView from "@/views/GalerijaView.vue"
 import FavoritiView from "../views/FavoritiView.vue";
 import ProfilView from "../views/ProfilView.vue";
 import ModelPageVue from "@/views/ModelPage.vue";
+import Opis from "@/views/Opis.vue";
 
 
 
@@ -27,7 +28,7 @@ const routes = [
     component: () => import('../views/Signup.vue')
   },
   {
-    path: '/opis',
+    path: '/Opis',
     name: 'Opis',
     component: () => import('../views/Opis.vue')
   },
