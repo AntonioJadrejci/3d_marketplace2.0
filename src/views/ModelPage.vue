@@ -1,5 +1,14 @@
 <template>
-  <div class="home-background"></div>
+  <div class="home-background">
+    <div class="header">
+      <p
+        class="mt-2"
+        style="color: #3bd5ea; font-weight: bold; font-size: xx-large"
+      >
+        {{ modelData?.title || "Nepoznato" }}
+      </p>
+    </div>
+  </div>
 </template>
 
 <script>

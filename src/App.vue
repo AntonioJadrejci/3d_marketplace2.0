@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <!-- Navigation bar -->
     <nav :color="'#01090a'" dark>
       <v-btn
         class="mx-2 ml-12 square-btn"
