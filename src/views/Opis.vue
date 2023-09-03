@@ -1,13 +1,16 @@
 <template>
   <div class="home-background">
     <div class="panel">
-      <div class="description">
-        <p2>
-          Ovo je 3D marketplace, mjesto na kojemu možete pronaći veliki broj 3d
-          modela koji su kompatibilni u programu blender. Isto tako možete i vi
-          sami učiniti 3d marketplace boljim za upotrebu tako da objavite vaše
-          vlastite 3d modele koji će pomoći drugim korisnicima.
-        </p2>
+      <div class="header">
+        O nama
+        <hr style="border: 2px solid rgb(255, 255, 255)" />
+      </div>
+      <div class="content">
+        Ovo je 3D marketplace, mjesto na kojemu možete pronaći veliki broj 3D
+        modela koji su kompatibilni u programu blender.<br /><br />
+        Isto tako možete i vi sami učiniti 3D marketplace boljim za upotrebu
+        tako da objavite vaše vlastite 3D modele koji će pomoći drugim
+        korisnicima.
       </div>
     </div>
   </div>
@@ -15,7 +18,7 @@
 
 <script>
 export default {
-  name: "HomeView",
+  name: "Opis",
   components: {},
 };
 </script>
@@ -32,16 +35,28 @@ export default {
 
 .panel {
   position: absolute;
-  top: 20;
+  top: 0;
   left: 0;
   width: 50%;
-  height: 300vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.7);
 }
 
-.description {
-  font-size: 40px;
-  text-align: center;
-  padding: 25px 0;
-  margin-bottom: 25px;
+.header {
+  background-color: #3bd5ea;
+  color: #fff;
+  font-size: 2em;
+  text-align: left;
+  padding: 10px 6px;
+  flex: 0 0 auto;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 10px 6px;
+  font-size: 2em;
+  background: rgba(255, 255, 255, 0.7);
 }
 </style>
