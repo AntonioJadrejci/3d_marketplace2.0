@@ -1,11 +1,11 @@
 <template></template>
 
 <script>
-import { defineComponent } from "@vue/composition-api";
+import router from "@/router";
 
-export default defineComponent({
-  setup() {},
-});
+export default {
+  name: "UploadNew",
+};
 </script>
 
 <style scoped>

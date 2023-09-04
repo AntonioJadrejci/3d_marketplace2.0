@@ -9,6 +9,7 @@
           class="custom-icon-size"
         >
         </v-app-bar-nav-icon>
+
         <v-btn
           class="mx-2 ml-12 square-btn"
           @click="toggleUploadWindow()"
@@ -39,7 +40,9 @@
           single-line
           placeholder="Pretraživanje"
           ref="searchField"
+          @input="handleSearchInput"
         >
+          >
         </v-text-field>
         <router-link style="text decoration: none" to="/"
           >3D MARKETPLACE</router-link
@@ -85,9 +88,17 @@
     </div>
   </v-app>
 </template>
-
 <script>
+import router from "./router";
+import LoginWindow from "./components/LoginWindow.vue";
+import UploadNew from "./components/UploadNew.vue";
+
+export default {
+  name: "App",
+  components: {},
+};
 </script>
+
 
 
 <style lang="scss">
@@ -122,6 +133,19 @@ nav {
   height: 2rem;
   width: 2rem;
 }
+.blue-font {
+  color: #3bd5ea;
+  text-align: center;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+v-text-field {
+  border-radius: 4px;
+  overflow: hidden;
+}
 .flex-center-image {
   flex: 1;
   display: flex;
@@ -135,5 +159,11 @@ nav {
 .search-field ::placeholder {
   color: #3bd5ea !important;
   font-size: large !important;
+}
+.square-btn.v-btn {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  padding: 0 !important;
 }
 </style>
