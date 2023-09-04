@@ -1,77 +1,89 @@
 <template>
-  <div class="app-container">
-    <!-- Navigation bar -->
-    <nav :color="'#01090a'" dark>
-      <v-btn
-        class="mx-2 ml-12 square-btn"
-        @click="toggleUploadWindow()"
-        dark
-        :color="'#3bd5ea'"
-      >
-        <v-icon dark> mdi-plus </v-icon>
-      </v-btn>
+  <v-app>
+    <div class="app-container">
+      <!-- Navigation bar -->
+      <nav :color="'#01090a'" dark>
+        <v-app-bar-nav-icon
+          @click.stop="drawer = !drawer"
+          color="#3bd5ea"
+          class="custom-icon-size"
+        >
+        </v-app-bar-nav-icon>
+        <v-btn
+          class="mx-2 ml-12 square-btn"
+          @click="toggleUploadWindow()"
+          dark
+          :color="'#3bd5ea'"
+        >
+          <v-icon dark> mdi-plus </v-icon>
+        </v-btn>
 
-      <v-spacer></v-spacer>
-      <div class="flex-center-image">
-        <a href="/">
-          <v-img
-            alt="3D MARKETPLACE"
-            contain
-            :src="require('./assets/Naslov.png')"
-            transition="scale-transition"
-            max-height="100"
-            max-width="600"
-          />
-        </a>
-      </div>
-      <v-spacer></v-spacer>
-      <v-text-field
-        class="white-background search-field"
-        hide-details
-        prepend-icon="mdi-magnify"
-        single-line
-        placeholder="Pretraživanje"
-        ref="searchField"
-      >
-      </v-text-field>
-      <router-link style="text decoration: none" to="/"
-        >3D MARKETPLACE</router-link
-      >
-      |
-      <router-link style="text decoration: none" to="/Login"
-        >Prijava</router-link
-      >
-      <router-link style="text decoration: none" to="/Signup"
-        >Registracija</router-link
-      >
-      <router-link style="text decoration: none" to="/Opis">Opis</router-link>
+        <v-spacer></v-spacer>
+        <div class="flex-center-image">
+          <a href="/">
+            <v-img
+              alt="3D MARKETPLACE"
+              contain
+              :src="require('./assets/Naslov.png')"
+              transition="scale-transition"
+              max-height="100"
+              max-width="600"
+            />
+          </a>
+        </div>
+        <v-spacer></v-spacer>
+        <v-text-field
+          class="white-background search-field"
+          hide-details
+          prepend-icon="mdi-magnify"
+          single-line
+          placeholder="Pretraživanje"
+          ref="searchField"
+        >
+        </v-text-field>
+        <router-link style="text decoration: none" to="/"
+          >3D MARKETPLACE</router-link
+        >
+        |
+        <router-link style="text decoration: none" to="/Login"
+          >Prijava</router-link
+        >
+        <router-link style="text decoration: none" to="/Signup"
+          >Registracija</router-link
+        >
+        <router-link style="text decoration: none" to="/Opis">Opis</router-link>
 
-      <router-link style="text decoration: none" to="/GalerijaView"
-        >Galerija</router-link
-      >
-      <router-link style="text decoration: none" to="/ProfilView"
-        >Profil</router-link
-      >
-      <router-link style="text decoration: none" to="/FavoritiView"
-        >Favoriti</router-link
-      >
-      <router-link style="text decoration: none" to="/ModelPage"
-        >Model Page</router-link
-      >
-    </nav>
-    <router-view />
+        <router-link style="text decoration: none" to="/GalerijaView"
+          >Galerija</router-link
+        >
+        <router-link style="text decoration: none" to="/ProfilView"
+          >Profil</router-link
+        >
+        <router-link style="text decoration: none" to="/FavoritiView"
+          >Favoriti</router-link
+        >
+        <router-link style="text decoration: none" to="/ModelPage"
+          >Model Page</router-link
+        >
+      </nav>
+      <router-view />
 
-    <!-- Footer -->
-    <v-footer padless class="app-footer p-4" style="background-color: #01090a">
-      <v-container>
-        <v-row>
-          <v-col class="text-center blue-font" cols="12">
-            Mnoštvo besplatnih 3D modela na jednom mjestu!
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-footer>
-  </div>
+      <!-- Footer -->
+      <v-footer
+        padless
+        class="app-footer p-4"
+        style="background-color: #01090a"
+      >
+        <v-container>
+          <v-row>
+            <v-col class="text-center blue-font" cols="12">
+              Mnoštvo besplatnih 3D modela na jednom mjestu!
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-footer>
+    </div>
+  </v-app>
 </template>
 
 <script>
