@@ -212,4 +212,21 @@ export default {
   justify-content: center;
   align-items: center;
 }
+.text-green input {
+  color: #3bd5ea !important;
+}
+
+.btn-container {
+  flex-direction: column;
+}
+
+.custom-btn {
+  background-color: gray !important;
+  color: #3bd5ea !important;
+  margin-bottom: 10px;
+}
+
+.custom-btn:hover {
+  background-color: darkgray !important;
+}
 </style>

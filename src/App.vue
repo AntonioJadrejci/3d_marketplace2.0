@@ -47,12 +47,6 @@
           >3D MARKETPLACE</router-link
         >
         |
-        <router-link style="text decoration: none" to="/Login"
-          >Prijava</router-link
-        >
-        <router-link style="text decoration: none" to="/Signup"
-          >Registracija</router-link
-        >
 
         <router-link style="text decoration: none" to="/GalerijaView"
           >Galerija</router-link
@@ -97,6 +91,15 @@
         </v-list>
       </v-navigation-drawer>
       <router-view />
+
+      <!-- Content Area -->
+      <div class="content">
+        <v-card class="mx-auto">
+          <router-view />
+
+          <LoginWindow v-model="showLoginWindow" />
+        </v-card>
+      </div>
 
       <!-- Footer -->
       <v-footer
@@ -157,6 +160,15 @@ export default {
     ],
   }),
   methods: {
+    async logout() {
+      try {
+        await signOut(auth);
+        console.log("Logged out successfully");
+        router.go();
+      } catch (error) {
+        console.error("Error logging out:", error.message);
+      }
+    },
     // Search bar
     handleSearchInput() {
       const query =
@@ -167,9 +179,10 @@ export default {
         this.$router.push("/galerija");
       }
     },
-    toggleUploadWindow() {
-      this.showUploadWindow = !this.showUploadWindow;
+    toggleLoginWindow() {
+      this.showLoginWindow = !this.showLoginWindow;
     },
+
     handleMenuItemClick(item) {
       if (item.action && typeof this[item.action] === "function") {
         this[item.action]();
