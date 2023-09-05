@@ -2,7 +2,7 @@
   <v-app>
     <div class="app-container">
       <!-- Navigation bar -->
-      <nav :color="'#01090a'" dark>
+      <v-app-bar :color="'#01090a'" dark>
         <v-app-bar-nav-icon
           @click.stop="drawer = !drawer"
           color="#3bd5ea"
@@ -42,7 +42,6 @@
           ref="searchField"
           @input="handleSearchInput"
         >
-          >
         </v-text-field>
         <router-link style="text decoration: none" to="/"
           >3D MARKETPLACE</router-link
@@ -54,7 +53,6 @@
         <router-link style="text decoration: none" to="/Signup"
           >Registracija</router-link
         >
-        <router-link style="text decoration: none" to="/Opis">Opis</router-link>
 
         <router-link style="text decoration: none" to="/GalerijaView"
           >Galerija</router-link
@@ -68,7 +66,36 @@
         <router-link style="text decoration: none" to="/ModelPage"
           >Model Page</router-link
         >
-      </nav>
+      </v-app-bar>
+      <v-navigation-drawer
+        v-model="drawer"
+        color="#3bd5ea"
+        width="350"
+        absolute
+        bottom
+        temporary
+      >
+        <v-list nav dense>
+          <v-list-item-group v-model="group" active-class="">
+            <v-list-item-group v-model="group">
+              <v-list-item
+                class="custom-border"
+                v-for="item in userComputed
+                  ? menuItemsLoggedIn
+                  : menuItemsLoggedOut"
+                :key="item.title"
+                @click="handleMenuItemClick(item)"
+              >
+                <v-list-item-title
+                  class="drawer-item"
+                  style="font-size: 2rem !important; padding: 25px"
+                  >{{ item.title }}</v-list-item-title
+                >
+              </v-list-item>
+            </v-list-item-group>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
       <router-view />
 
       <!-- Footer -->
@@ -89,13 +116,69 @@
   </v-app>
 </template>
 <script>
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase";
+import { signOut } from "firebase/auth";
+
 import router from "./router";
 import LoginWindow from "./components/LoginWindow.vue";
 import UploadNew from "./components/UploadNew.vue";
 
+import { db } from "@/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { collection, getDocs } from "@firebase/firestore";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    LoginWindow,
+    UploadNew,
+  },
+  data: () => ({
+    drawer: false,
+    group: null,
+    user: null,
+    userData: [],
+    router: router,
+    showLoginWindow: false,
+    showUploadWindow: false,
+    menuItemsLoggedOut: [
+      { title: "O nama", route: "/Opis" },
+      { title: "Prijava", action: "toggleLoginWindow" },
+    ],
+    menuItemsLoggedIn: [
+      { title: "O nama", route: "/o-nama" },
+      { title: "Galerija", route: "/galerija" },
+      { title: "Profil", route: "/profil" },
+      { title: "Pretplate", route: "/pretplate" },
+      { title: "Favoriti", route: "/favoriti" },
+
+      { title: "Odjava", action: "logout" },
+    ],
+  }),
+  methods: {
+    // Search bar
+    handleSearchInput() {
+      const query =
+        this.$refs.searchField && this.$refs.searchField.internalValue;
+      this.$store.commit("setSearchQuery", query);
+
+      if (this.$route.path !== "/galerija") {
+        this.$router.push("/galerija");
+      }
+    },
+    toggleUploadWindow() {
+      this.showUploadWindow = !this.showUploadWindow;
+    },
+    handleMenuItemClick(item) {
+      if (item.action && typeof this[item.action] === "function") {
+        this[item.action]();
+        //Prevent redundant navigation
+      } else if (item.route && this.$route.path !== item.route) {
+        this.$router.push(item.route);
+      }
+    },
+  },
 };
 </script>
 
@@ -110,23 +193,15 @@ export default {
   color: #2c3e50;
   background-color: #000000;
 }
-
-nav {
-  padding: 40px;
-
-  a {
-    font-weight: bold;
-    color: #34f1f3;
-    font-size: 20px;
-    margin-right: 20px;
-
-    &.router-link-exact-active {
-      color: #34f1f3;
-    }
-  }
+.content {
+  flex: 1 0 auto;
 }
+
 .app-footer {
   flex-shrink: 0;
+}
+.drawer-item {
+  color: white;
 }
 .custom-icon-size .v-icon {
   font-size: 2rem; /* Adjust the size as needed */
