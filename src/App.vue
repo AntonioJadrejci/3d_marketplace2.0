@@ -191,6 +191,37 @@ export default {
         this.$router.push(item.route);
       }
     },
+    // Fetch user data from Firestore
+    async fetchUserData() {
+      let data = null;
+      if (auth.currentUser) {
+        const userRef = doc(db, "users", this.user.uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+          data = userSnap.data();
+        } else {
+          console.log("No user data found in Firestore");
+        }
+      }
+      return data;
+    },
+
+    created() {
+      // Listen for auth state changes
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          console.log("User is logged in:", user.uid);
+          this.user = user;
+          // Use a mutation to update the Vuex store
+          const fetchedData = await this.fetchUserData();
+          this.userData = fetchedData;
+          this.$store.commit("setUserData", fetchedData);
+        } else {
+          console.log("User is not logged in");
+          this.user = null;
+        }
+      });
+    },
   },
 };
 </script>
