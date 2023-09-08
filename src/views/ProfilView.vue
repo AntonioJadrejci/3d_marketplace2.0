@@ -109,6 +109,68 @@ import {
 export default {
   name: "profili",
   components: {},
+  data() {
+    return {
+      selectedImage: null,
+    };
+  },
+  methods: {
+    async changeProfilePicture() {
+      if (!this.selectedImage) {
+        console.error("No file selected");
+        return;
+      }
+      const storageReference = storageRef(
+        storage,
+        `user_profile_images/${this.$store.state.userData.name}/${this.selectedImage.name}`
+      );
+
+      const snapshot = await uploadBytes(storageReference, this.selectedImage);
+      const imageURL = await getDownloadURL(snapshot.ref);
+      // Update the image URL in Firestore.
+      const userDocumentRef = doc(db, "users", this.$store.state.userData.uid);
+      await updateDoc(userDocumentRef, {
+        image: imageURL,
+      });
+
+      alert("Slika uspješno promjenjena!");
+      router.go();
+    },
+    async changePassword() {
+      const newPassword = prompt("Molimo unesite novu lozinku.");
+      if (newPassword) {
+        try {
+          const authInstance = getAuth();
+          await updatePassword(authInstance.currentUser, newPassword);
+          alert("Zaporka uspješno ažurirana!");
+        } catch (error) {
+          console.error("Error updating password:", error);
+          alert(
+            "Greška kod promjene zaporke! Ponovo se prijavite i pokušajte ponovo!"
+          );
+        }
+      }
+    },
+
+    async deleteAccount() {
+      let confirmation = confirm(
+        "Jeste li sigurni da želite obrisati vaš račun?"
+      );
+      if (confirmation) {
+        try {
+          await auth.currentUser.delete();
+          alert("Account deleted successfully!");
+          router.replace("/");
+          router.go();
+        } catch (error) {
+          console.error("Error deleting account:", error);
+          alert(
+            "Greška u brisanju računa. Prijavite se ponovo i pokušajte opet."
+          );
+        }
+      }
+    },
+  },
 };
 </script>
 

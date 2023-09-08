@@ -43,22 +43,9 @@
           @input="handleSearchInput"
         >
         </v-text-field>
-        <router-link style="text decoration: none" to="/"
-          >3D MARKETPLACE</router-link
-        >
-        |
 
         <router-link style="text decoration: none" to="/GalerijaView"
           >Galerija</router-link
-        >
-        <router-link style="text decoration: none" to="/ProfilView"
-          >Profil</router-link
-        >
-        <router-link style="text decoration: none" to="/FavoritiView"
-          >Favoriti</router-link
-        >
-        <router-link style="text decoration: none" to="/ModelPage"
-          >Model Page</router-link
         >
       </v-app-bar>
       <v-navigation-drawer
@@ -179,10 +166,16 @@ export default {
         this.$router.push("/galerija");
       }
     },
+    goToProfile() {
+      if (this.user && this.$route.path !== "/profil")
+        this.$router.push("/profil");
+    },
     toggleLoginWindow() {
       this.showLoginWindow = !this.showLoginWindow;
     },
-
+    toggleUploadWindow() {
+      this.showUploadWindow = !this.showUploadWindow;
+    },
     handleMenuItemClick(item) {
       if (item.action && typeof this[item.action] === "function") {
         this[item.action]();
