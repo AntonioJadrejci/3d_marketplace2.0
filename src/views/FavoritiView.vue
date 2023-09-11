@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import FavouriteCard from "@/components/FavouriteCard.vue";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase";
 export default {

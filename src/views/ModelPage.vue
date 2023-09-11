@@ -84,6 +84,39 @@ export default {
   components: {},
   data: () => ({}),
   methods: {
+    // Adds model to user's favourites.
+    async addToFavourites() {
+      try {
+        const userId = this.$store.state.userData.uid;
+
+        const userRef = doc(db, "users", userId);
+
+        const userDoc = await getDoc(userRef);
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+
+          if (
+            userData.favourites &&
+            userData.favourites.includes(this.modelData)
+          ) {
+            console.log("Model is already in favourites!");
+            alert("Model je već u favoritima!");
+            return;
+          }
+
+          await updateDoc(userRef, {
+            favourites: arrayUnion(this.modelData),
+          });
+
+          console.log("Model added to favourites!");
+          router.go();
+        } else {
+          console.error("User not found");
+        }
+      } catch (error) {
+        console.error("Error adding model to favourites: ", error);
+      }
+    },
     // Fetches model data from Firestore.
     async fetchModelData(modelTitle) {
       const modelsRef = collection(db, "models");
@@ -116,15 +149,49 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
+  height: 100vh;
   position: relative;
 }
 
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 1vh auto;
+  padding: 0 20px;
+}
+
+.model-image {
+  width: 50%;
+  max-width: 600px; /* Adjust if needed */
+  margin-bottom: 20px;
+}
+
+.model-title {
+  font-size: 24px;
+}
+
+.model-description,
+.model-category,
+.model-owner {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
 .header {
-  background-color: #3bd5ea;
+  background-color: #080c0c;
   color: #fff;
-  font-size: 2em;
-  text-align: left;
-  padding: 10px 6px;
-  flex: 0 0 auto;
+  font-size: 1.5em;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.text-box {
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
 }
 </style>
