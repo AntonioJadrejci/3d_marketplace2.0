@@ -10,7 +10,23 @@
         >
         </v-app-bar-nav-icon>
 
+        <div v-if="this.$store.state.userData.name" class="position-relative">
+          <v-avatar
+            class="ml-6"
+            style="cursor: pointer"
+            color="primary"
+            size="42"
+            @click="goToProfile()"
+            ><v-img :src="this.$store.state.userData.image"></v-img
+          ></v-avatar>
+          <!--Level-->
+          <span class="number-badge">{{
+            this.$store.state.userData.level
+          }}</span>
+        </div>
+
         <v-btn
+          v-if="this.$store.state.userData.name"
           class="mx-2 ml-12 square-btn"
           @click="toggleUploadWindow()"
           dark
@@ -43,10 +59,6 @@
           @input="handleSearchInput"
         >
         </v-text-field>
-
-        <router-link style="text decoration: none" to="/GalerijaView"
-          >Galerija</router-link
-        >
       </v-app-bar>
       <v-navigation-drawer
         v-model="drawer"
@@ -85,6 +97,7 @@
           <router-view />
 
           <LoginWindow v-model="showLoginWindow" />
+          <UploadNew v-model="showUploadWindow" />
         </v-card>
       </div>
 
@@ -133,14 +146,13 @@ export default {
     showLoginWindow: false,
     showUploadWindow: false,
     menuItemsLoggedOut: [
-      { title: "O nama", route: "/Opis" },
+      { title: "O nama", route: "/opis" },
       { title: "Prijava", action: "toggleLoginWindow" },
     ],
     menuItemsLoggedIn: [
-      { title: "O nama", route: "/o-nama" },
+      { title: "O nama", route: "/opis" },
       { title: "Galerija", route: "/galerija" },
       { title: "Profil", route: "/profil" },
-      { title: "Pretplate", route: "/pretplate" },
       { title: "Favoriti", route: "/favoriti" },
 
       { title: "Odjava", action: "logout" },
@@ -198,38 +210,58 @@ export default {
       }
       return data;
     },
-
-    created() {
-      // Listen for auth state changes
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          console.log("User is logged in:", user.uid);
-          this.user = user;
-          // Use a mutation to update the Vuex store
-          const fetchedData = await this.fetchUserData();
-          this.userData = fetchedData;
-          this.$store.commit("setUserData", fetchedData);
-        } else {
-          console.log("User is not logged in");
-          this.user = null;
-        }
-      });
+    // Fetch models from Firestore
+    async fetchModels() {
+      const querySnapshot = await getDocs(collection(db, "models"));
+      let models = querySnapshot.docs.map((doc) => doc.data());
+      console.log(models);
+      this.$store.commit("setModels", models);
     },
+  },
+  computed: {
+    userComputed() {
+      return this.user;
+    },
+  },
+
+  watch: {
+    group() {
+      this.drawer = false;
+    },
+  },
+
+  created() {
+    // Listen for auth state changes
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        console.log("User is logged in:", user.uid);
+        this.user = user;
+        // Use a mutation to update the Vuex store
+        const fetchedData = await this.fetchUserData();
+        this.userData = fetchedData;
+        this.$store.commit("setUserData", fetchedData);
+      } else {
+        console.log("User is not logged in");
+        this.user = null;
+      }
+    });
+  },
+
+  mounted() {
+    this.fetchModels();
   },
 };
 </script>
 
 
 
-<style lang="scss">
+<style scoped>
 .app-container {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  color: #2c3e50;
-  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
 .content {
   flex: 1 0 auto;
 }
@@ -264,7 +296,6 @@ v-text-field {
   justify-content: center;
   align-items: center;
 }
-
 .search-field {
   max-width: 250px;
 }
@@ -272,10 +303,29 @@ v-text-field {
   color: #3bd5ea !important;
   font-size: large !important;
 }
+.custom-border:not(:last-child) {
+  border-bottom: 3px solid white;
+}
+/*Add button*/
 .square-btn.v-btn {
   width: 40px;
   height: 40px;
   min-width: 40px;
   padding: 0 !important;
+}
+/*Avatar*/
+.position-relative {
+  position: relative;
+  display: inline-block; /* so it doesn't take full width */
+}
+
+.number-badge {
+  position: absolute;
+  font-weight: bold;
+  bottom: -15px;
+  right: -10px;
+  color: #c500f6;
+  border-radius: 50%;
+  font-size: 1.4rem;
 }
 </style>

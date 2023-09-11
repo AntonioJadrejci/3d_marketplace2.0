@@ -19,8 +19,8 @@ const routes = [
   },
 
   {
-    path: '/Opis',
-    name: 'Opis',
+    path: '/opis',
+    name: 'opis',
     component: () => import('../views/Opis.vue')
   },
   {

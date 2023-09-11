@@ -18,18 +18,18 @@
 
 <script>
 export default {
-  name: "Opis",
+  name: "opis",
   components: {},
 };
 </script>
 <style scoped>
 .home-Background {
   background-image: url("../assets/onama.jpeg");
-  background-position: center;
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  width: 100%;
   height: 100vh;
+  width: 100%;
   position: relative;
 }
 
