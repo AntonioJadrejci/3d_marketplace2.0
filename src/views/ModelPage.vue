@@ -60,7 +60,12 @@
           </defs></svg
         ><b>Vlasnik:</b> {{ modelData.owner }}
       </p>
-      <div class="mt-4"></div>
+      <div class="mt-4">
+        <v-btn tile color="red" @click="addToFavourites()">
+          <v-icon left> mdi-heart </v-icon>
+          Dodaj u favorite
+        </v-btn>
+      </div>
     </div>
   </div>
 </template>

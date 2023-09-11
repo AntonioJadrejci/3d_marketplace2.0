@@ -1,8 +1,31 @@
 <template>
-  <div class="home-background"></div>
+  <div class="home-background">
+    <div class="panel">
+      <div class="header">
+        Favoriti
+        <hr style="border: 2px solid rgb(255, 255, 255)" />
+      </div>
+
+      <div class="content">
+        <v-row>
+          <v-col v-for="model in favourite_models" :key="model.title">
+            <FavouriteCard
+              :image="model.imageURL"
+              :title="model.title"
+              :version="model.version"
+              :description="model.description"
+              :owner="model.owner"
+            ></FavouriteCard>
+          </v-col>
+        </v-row>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/firebase";
 export default {
   name: "favoriti",
   components: {},
