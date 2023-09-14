@@ -105,9 +105,9 @@ import {
   uploadBytes,
   getDownloadURL,
 } from "firebase/storage";
-
 export default {
-  name: "profili",
+  name: "profil",
+
   components: {},
   data() {
     return {
@@ -169,6 +169,13 @@ export default {
           );
         }
       }
+    },
+  },
+  computed: {
+    // Map the userData state to a computed property.
+    ...mapState(["userData"]),
+    brojObjava() {
+      return this.userData.my_models.length;
     },
   },
 };

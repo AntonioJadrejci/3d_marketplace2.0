@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="app-container">
-      <!-- Navigation bar -->
+      <!-- Navigation Bar -->
       <v-app-bar :color="'#01090a'" dark>
         <v-app-bar-nav-icon
           @click.stop="drawer = !drawer"
@@ -49,6 +49,7 @@
           </a>
         </div>
         <v-spacer></v-spacer>
+
         <v-text-field
           class="white-background search-field"
           hide-details
@@ -60,6 +61,7 @@
         >
         </v-text-field>
       </v-app-bar>
+
       <v-navigation-drawer
         v-model="drawer"
         color="#3bd5ea"
@@ -89,7 +91,6 @@
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
-      <router-view />
 
       <!-- Content Area -->
       <div class="content">
@@ -100,7 +101,6 @@
           <UploadNew v-model="showUploadWindow" />
         </v-card>
       </div>
-
       <!-- Footer -->
       <v-footer
         padless
@@ -118,6 +118,7 @@
     </div>
   </v-app>
 </template>
+
 <script>
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase";
@@ -158,6 +159,7 @@ export default {
       { title: "Odjava", action: "logout" },
     ],
   }),
+
   methods: {
     async logout() {
       try {
@@ -252,9 +254,6 @@ export default {
   },
 };
 </script>
-
-
-
 <style scoped>
 .app-container {
   display: flex;

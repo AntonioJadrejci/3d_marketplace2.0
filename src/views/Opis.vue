@@ -23,7 +23,7 @@ export default {
 };
 </script>
 <style scoped>
-.home-Background {
+.home-background {
   background-image: url("../assets/onama.jpeg");
   background-size: cover;
   background-position: center;
