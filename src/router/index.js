@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/opis',
     name: 'opis',
-    component: () => import('../views/Opis.vue')
+    component: Opis.vue
   },
   {
     path: "/galerija/",
