@@ -19,9 +19,11 @@
 <script>
 export default {
   name: "opis",
+
   components: {},
 };
 </script>
+
 <style scoped>
 .home-background {
   background-image: url("../assets/onama.jpeg");

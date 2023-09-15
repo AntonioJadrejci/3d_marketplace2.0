@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/opis',
     name: 'opis',
-    component: Opis.vue
+    component: Opis
   },
   {
     path: "/galerija/",
