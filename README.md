@@ -1,7 +1,11 @@
 # 3d_Marketplace2
 
 3D_Marketplace
-Antonio Jadrejcic Fakultet Informatike u Puli: https://fipu.unipu.hr/ Kolegij: Programsko inženjerstvo Mentor: doc. dr. sc. Nikola Tanković
+Antonio Jadrejcic Fakultet Informatike u Puli: https://fipu.unipu.hr/ 
+
+Kolegij: Programsko inženjerstvo 
+
+Mentor: doc. dr. sc. Nikola Tanković
 
 Opis funkcionalnosti:
 
